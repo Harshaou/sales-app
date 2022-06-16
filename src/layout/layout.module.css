@@ -1,0 +1,44 @@
+
+.contain{
+    width: 90%;
+}
+
+.sideBar{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.logo{
+    height: 60px;
+    margin: 30px 0px;
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.linkItem{
+    display: grid;
+    place-items: center;
+    margin: 10px 0px;
+    
+}
+
+.linkItem:hover{
+    font-weight: bold;  
+}
+
+.icons{
+    font-size: 22px;
+}
+
+/* .icons:hover{
+    color: orange;
+   
+} */
