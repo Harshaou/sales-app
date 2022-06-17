@@ -27,18 +27,29 @@
     display: grid;
     place-items: center;
     margin: 10px 0px;
-    
 }
 
-.linkItem:hover{
+.linkItemActive{
+    display: grid;
+    place-items: center;
+    margin: 10px 0px;
+    color: #f87d4e;
+}
+
+.linkItemActive, .linkItem:hover{
     font-weight: bold;  
+    color: #f87d4e;
 }
 
-.icons{
-    font-size: 22px;
+.iconsActive{
+    color: #f87d4e;
 }
+
+
+
+
 
 /* .icons:hover{
-    color: orange;
+    color: #f87d4e;
    
 } */

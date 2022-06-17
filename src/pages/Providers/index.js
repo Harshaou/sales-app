@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Main from '../../layout/Main';
 import styles from './index.module.css';
@@ -22,8 +23,8 @@ const Index = () => {
   return (
     <Main>
       <div className={styles.container}>
-        <div className={styles.topMenu}>
-          {/* <input className={styles.search} /> */}
+        {/* <div className={styles.topMenu}>
+          <input className={styles.search} />
           <Search
             size="large"
             placeholder="input search text"
@@ -38,7 +39,7 @@ const Index = () => {
             <div className={styles.whiteBox}>New Provider</div>
           </div>
         </div>
-        <Table />
+        <Table /> */}
       </div>
     </Main>
   );

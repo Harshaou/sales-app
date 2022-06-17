@@ -1,4 +1,6 @@
-import { Form, Select, Input, message, Upload, Button } from 'antd';
+/* eslint-disable quotes */
+import { Form, Select, Input, Button } from 'antd';
+import styles from './index.module.css';
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -10,14 +12,18 @@ const Links = ({ form, handleFinish }) => {
     <Form form={form} onFinish={handleFinish}>
       <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
         <div style={{ width: '50%' }}>
-          <span className="form-label ">Name of the service provider</span>
+          <span className={styles.formLabel}>
+            Name of the service provider <span style={{ color: '#f87d4e' }}>*</span>
+          </span>
           <Form.Item name="name">
             <Input size="large" placeholder="Provider name" className="ant-custom-input" />
           </Form.Item>
         </div>
 
         <div style={{ width: '50%' }}>
-          <span className="form-label ">Service provider type</span>
+          <span className={styles.formLabel}>
+            Service provider type <span style={{ color: '#f87d4e' }}>*</span>
+          </span>
           <Form.Item name="type">
             <Select size="large" initialvalues="lucy" onChange={() => console.log()}>
               <Option value="jack">Jack</Option>
@@ -30,14 +36,18 @@ const Links = ({ form, handleFinish }) => {
 
       <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
         <div style={{ width: '50%' }}>
-          <span className="form-label ">Super admin name</span>
+          <span className={styles.formLabel}>
+            Super admin name <span style={{ color: '#f87d4e' }}>*</span>
+          </span>
           <Form.Item name="superAdminName">
             <Input size="large" placeholder="Provider name" className="ant-custom-input" />
           </Form.Item>
         </div>
 
         <div style={{ width: '50%' }}>
-          <span className="form-label ">Super admin email</span>
+          <span className={styles.formLabel}>
+            Super admin email <span style={{ color: '#f87d4e' }}>*</span>
+          </span>
           <Form.Item name="superAdminEmail">
             <Input size="large" placeholder="Provider name" className="ant-custom-input" />
           </Form.Item>
@@ -46,14 +56,16 @@ const Links = ({ form, handleFinish }) => {
 
       <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
         <div style={{ width: '50%' }}>
-          <span className="form-label ">Contact Number</span>
+          <span className={styles.formLabel}>
+            Contact Number <span style={{ color: '#f87d4e' }}>*</span>
+          </span>
           <Form.Item name="contactNumber">
             <Input size="large" placeholder="Provider name" className="ant-custom-input" />
           </Form.Item>
         </div>
 
         <div style={{ width: '50%' }}>
-          <span className="form-label ">Upload Logo</span>
+          <span className={styles.formLabel}>Upload Logo</span>
           <Form.Item style={{ width: '100%' }} name="img">
             <Button size="large" style={{ width: '100%' }} icon={<UploadOutlined />}>
               Click to Upload
@@ -63,7 +75,10 @@ const Links = ({ form, handleFinish }) => {
       </div>
 
       <div>
-        <span className="form-label">Address </span>
+        <span className={styles.formLabel}>
+          {' '}
+          Address <span style={{ color: '#f87d4e' }}>*</span>
+        </span>
         <Form.Item name="address">
           <TextArea rows={4} placeholder="Address" />
         </Form.Item>

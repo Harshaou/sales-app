@@ -1,51 +1,97 @@
+import { useState } from 'react';
 import { InboxOutlined } from '@ant-design/icons';
-import { message, Upload, Button } from 'antd';
+import { message, Upload, Button, Radio, Divider, Space } from 'antd';
+import styles from './index.module.css';
 const { Dragger } = Upload;
-const props = {
-  name: 'file',
-  multiple: true,
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
 
-  onChange(info) {
-    const { status } = info.file;
+const App = ({ setStep }) => {
+  const [value, setValue] = useState(null);
 
-    if (status !== 'uploading') {
-      console.log(info.file, info.fileList);
+  const onChange = (e) => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
+  };
+
+  const renderButtons = () => {
+    if (value === null) {
+      return (
+        <div style={{ float: 'right', display: 'flex', gap: 15, marginTop: 30 }}>
+          <Button onClick={() => setStep(0)} size="middle" type="dashed" htmlType="submit">
+            Prev
+          </Button>
+          <Button
+            disabled
+            onClick={() => setStep(2)}
+            size="middle"
+            type="primary"
+            htmlType="submit"
+          >
+            Next
+          </Button>
+        </div>
+      );
     }
-
-    if (status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
+    if (value === 'Yes') {
+      return (
+        <div style={{ float: 'right', display: 'flex', gap: 15, marginTop: 30 }}>
+          <Button onClick={() => setStep(0)} size="middle" type="dashed" htmlType="submit">
+            Prev
+          </Button>
+          <Button onClick={() => setStep(2)} size="middle" type="primary" htmlType="submit">
+            Next
+          </Button>
+        </div>
+      );
     }
-  },
+    if (value === 'No') {
+      return (
+        <div style={{ float: 'right', display: 'flex', gap: 15, marginTop: 30 }}>
+          <Button onClick={() => setStep(0)} size="middle" type="dashed" htmlType="submit">
+            Prev
+          </Button>
+          <Button onClick={() => setStep(2)} size="middle" type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </div>
+      );
+    }
+  };
 
-  onDrop(e) {
-    console.log('Dropped files', e.dataTransfer.files);
-  },
-};
+  return (
+    <div>
+      <div>
+        <p>
+          1) Does the service provider have more than one branch ?
+          <span style={{ color: '#f87d4e' }}> *</span>
+        </p>
+        <Radio.Group onChange={onChange} value={value}>
+          <Space>
+            <Radio value={'Yes'}>Yes</Radio>
+            <Radio value={'No'}>No</Radio>
+          </Space>
+        </Radio.Group>
+      </div>
 
-const App = ({ setStep }) => (
-  <div>
-    <Dragger {...props}>
-      <p className="ant-upload-drag-icon">
-        <InboxOutlined />
-      </p>
-      <p className="ant-upload-text">Click or drag file to this area to upload</p>
-      <p className="ant-upload-hint">
-        Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-        band files
-      </p>
-    </Dragger>
-    <div style={{ float: 'right', display: 'flex', gap: 15, marginTop: 20 }}>
-      <Button onClick={() => setStep(0)} size="middle" type="dashed" htmlType="submit">
-        Prev
-      </Button>
-      <Button onClick={() => setStep(2)} size="middle" type="primary" htmlType="submit">
-        Next
-      </Button>
+      <Divider style={{ marginBottom: 35, marginTop: 35 }} />
+
+      <div>
+        <p>
+          2) Upload the list of services provided by the service provider
+          <span style={{ color: '#f87d4e' }}> *</span>
+        </p>
+
+        <Dragger style={{ height: 500 }}>
+          <p className="ant-upload-drag-icon">
+            <InboxOutlined />
+          </p>
+          <p className="ant-upload-text">Click or drag file to this area to upload</p>
+          <p className="ant-upload-hint">Upload format: pdf/excel/doc format</p>
+        </Dragger>
+      </div>
+
+      {renderButtons()}
     </div>
-  </div>
-);
+  );
+};
 
 export default App;

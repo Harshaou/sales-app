@@ -6,9 +6,7 @@ const Index = () => {
     <Main>
       <div
         style={{ display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center' }}
-      >
-        <h1>Dashboard is empty</h1>
-      </div>
+      ></div>
     </Main>
   );
 };
