@@ -21,7 +21,7 @@ const Index = () => {
   );
 
   return (
-    <Main>
+    <Main pageName="Providers">
       <div className={styles.container}>
         {/* <div className={styles.topMenu}>
           <input className={styles.search} />

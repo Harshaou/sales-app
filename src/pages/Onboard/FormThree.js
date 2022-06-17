@@ -88,14 +88,14 @@ const Links = ({ form, handleFinish }) => {
         <div style={{ width: '50%' }}>
           <span className={styles.formLabell}>User Email address</span>
           <Form.Item name="name" rules={[{ required: true }]}>
-            <Input placeholder="Provider name" className="ant-custom-input" />
+            <Input size="large" placeholder="Provider name" className="ant-custom-input" />
           </Form.Item>
         </div>
 
         <div style={{ width: '50%' }}>
           <span className={styles.formLabell}>Role</span>
           <Form.Item name="type">
-            <Select initialvalues="lucy" onChange={() => console.log()}>
+            <Select size="large" initialvalues="lucy" onChange={() => console.log()}>
               <Option value="jack">Jack</Option>
               <Option value="lucy">Lucy</Option>
               <Option value="Yiminghe">yiminghe</Option>
