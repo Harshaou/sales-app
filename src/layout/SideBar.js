@@ -40,7 +40,7 @@ const SideBar = () => {
             size={22}
             className={({ isActive }) => (isActive ? styles.iconsActive : styles.icons)}
           />
-          <p>Provders</p>
+          <p>providers</p>
         </NavLink>
         <NavLink
           to={'/logout'}

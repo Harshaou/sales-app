@@ -1,16 +1,29 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { firestore } from '../../firebase';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 import Main from '../../layout/Main';
 import styles from './index.module.css';
-import { Button, Input } from 'antd';
+import { Button, Input, Card, Avatar } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import { DownloadOutlined } from '@ant-design/icons';
 import Table from './Table';
+import GridSection from './GridSection';
+
+const { Search } = Input;
 
 const Index = () => {
-  const onSearch = (value) => console.log(value);
+  const [state, setState] = useState();
+  const providersCollectionref = collection(firestore, 'providers');
 
-  const { Search } = Input;
+  useEffect(() => {
+    async function getData() {
+      let response = await getDocs(providersCollectionref);
+      setState(response.docs.map((item) => item.data()));
+    }
+    getData();
+  }, []);
+
   const suffix = (
     <AudioOutlined
       style={{
@@ -20,11 +33,12 @@ const Index = () => {
     />
   );
 
+  const onSearch = (value) => console.log(value);
+
   return (
     <Main pageName="Providers">
       <div className={styles.container}>
-        {/* <div className={styles.topMenu}>
-          <input className={styles.search} />
+        <div className={styles.topMenu}>
           <Search
             size="large"
             placeholder="input search text"
@@ -39,7 +53,8 @@ const Index = () => {
             <div className={styles.whiteBox}>New Provider</div>
           </div>
         </div>
-        <Table /> */}
+
+        <GridSection state={state} />
       </div>
     </Main>
   );

@@ -1,19 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import Main from '../../layout/Main';
 import styles from './index.module.css';
 import { Button, Form } from 'antd';
 import InitialForm from './InitailForm';
 import FinalForm from './FinalForm';
-import { firestore } from '../../firebase';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 const Index = () => {
   const [form] = Form.useForm();
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [state, setState] = useState(0);
-  const providersCollectionref = collection(firestore, 'providers');
+  const [response, setResponse] = useState(null);
 
-  //Initial form
   const handleFirstForm = (value) => {
     setState(value);
     if (value['Branch exist'] === 'Yes') {
@@ -21,19 +19,36 @@ const Index = () => {
     }
   };
 
-  //HandleSubmit
   const handleFinish = async (value) => {
     let updateValue = {
       ...state,
       ...value,
     };
-
-    try {
-      addDoc(providersCollectionref, updateValue);
-    } catch (error) {
-      console.log(error);
-    }
+    localStorage.setItem('testObject', { updateValue });
+    let result = await axios
+      .post('https://sheet.best/api/sheets/ae40589d-e8cd-45f1-b482-92efbbc02080', updateValue)
+      .catch((err) => console.log(err));
+    setResponse(result);
   };
+
+  async function handleTest() {
+    let ress = localStorage.getItem('testObject');
+
+    let result = await axios
+      .post('https://sheet.best/api/sheets/ae40589d-e8cd-45f1-b482-92efbbc02080', {
+        ['Provider name']: 'Booom-1',
+        ['Provider type']: 'Booom-1',
+        ['Super admin name']: 'Booom-1 name',
+        ['Super admin email']: 'Booom-1 email',
+        ['Branch exist']: 'Booom-1',
+        ['Contact number']: '12321',
+        ['Address']: 'adress Booom-1',
+      })
+      .catch((err) => console.log(err));
+    setResponse(result);
+
+    console.log(result);
+  }
 
   const renderStep = () => {
     if (step === 0) {
@@ -59,7 +74,7 @@ const Index = () => {
       <div className={styles.container}>
         <div className={styles.formContainer}>
           {renderStep()}
-          <Button>test</Button>
+          <Button onClick={handleTest}>test</Button>
         </div>
       </div>
     </Main>

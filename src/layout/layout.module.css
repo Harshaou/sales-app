@@ -1,6 +1,7 @@
 
 .contain{
     width: 90%;
+    overflow: scroll;
 }
 
 .sideBar{

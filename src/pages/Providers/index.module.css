@@ -34,8 +34,14 @@
 
 .addBox:hover{
     color: #f87d4e;
-    border: 0.5px solid #f87d4e;
-   
+    border: 0.5px solid #f87d4e; 
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 2fr));
+    grid-gap: 1rem;
+    color: #444;
 }
 
 
