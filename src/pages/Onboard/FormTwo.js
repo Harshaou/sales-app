@@ -61,22 +61,7 @@ const App = ({ setStep }) => {
     <div>
       <div>
         <p>
-          1) Does the service provider have more than one branch ?
-          <span style={{ color: '#f87d4e' }}> *</span>
-        </p>
-        <Radio.Group onChange={onChange} value={value}>
-          <Space>
-            <Radio value={'Yes'}>Yes</Radio>
-            <Radio value={'No'}>No</Radio>
-          </Space>
-        </Radio.Group>
-      </div>
-
-      <Divider style={{ marginBottom: 35, marginTop: 35 }} />
-
-      <div>
-        <p>
-          2) Upload the list of services provided by the service provider
+          Upload the list of services provided by the service provider
           <span style={{ color: '#f87d4e' }}> *</span>
         </p>
 
@@ -89,7 +74,14 @@ const App = ({ setStep }) => {
         </Dragger>
       </div>
 
-      {renderButtons()}
+      <div style={{ float: 'right', display: 'flex', gap: 15, marginTop: 30 }}>
+        <Button onClick={() => setStep(0)} size="middle" type="dashed" htmlType="submit">
+          Prev
+        </Button>
+        <Button onClick={() => setStep(2)} size="middle" type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </div>
     </div>
   );
 };

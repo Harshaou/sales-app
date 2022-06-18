@@ -6,19 +6,21 @@ import InitialForm from './InitailForm';
 import FinalForm from './FinalForm';
 import { firestore } from '../../firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
+import FormTwo from './FormTwo';
 
 const Index = () => {
   const [form] = Form.useForm();
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [state, setState] = useState(0);
   const providersCollectionref = collection(firestore, 'providers');
 
   //Initial form
   const handleFirstForm = (value) => {
-    setState(value);
-    if (value['Branch exist'] === 'Yes') {
-      setStep(1);
-    }
+    // setState(value);
+    // if (value['Branch exist'] === 'Yes') {
+    //   setStep(1);
+    // }
+    setStep(1);
   };
 
   //HandleSubmit
@@ -28,11 +30,11 @@ const Index = () => {
       ...value,
     };
 
-    try {
-      addDoc(providersCollectionref, updateValue);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   addDoc(providersCollectionref, updateValue);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const renderStep = () => {
@@ -47,8 +49,8 @@ const Index = () => {
     if (step === 1) {
       return (
         <div>
-          <h1 className={styles.pageTitleThree}>Branches</h1>
-          <FinalForm form={form} handleFinish={handleFinish} setStep={setStep} />
+          <h1 className={styles.pageTitleThree}>Service Details</h1>
+          <FormTwo setStep={setStep} />
         </div>
       );
     }
@@ -57,10 +59,7 @@ const Index = () => {
   return (
     <Main pageName="Onboard provider">
       <div className={styles.container}>
-        <div className={styles.formContainer}>
-          {renderStep()}
-          <Button>test</Button>
-        </div>
+        <div className={styles.formContainer}>{renderStep()}</div>
       </div>
     </Main>
   );
